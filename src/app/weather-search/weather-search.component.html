@@ -1,5 +1,5 @@
 <p>weather-search works!</p>
-<!-- 
+<!--
 <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
     <label for="city">City</label>
     <input formControlName="location" type ="text" id="city" (input)-"onSearchLocation(input.value)" required>
@@ -12,7 +12,7 @@
 
 <form (ngSubmit)="onSubmit()">
     <label for="city">City</label>
-    <input formControlName="location" type ="text" id="city" (input)-"onSearchLocation(input.value)" required>
+    <input formControlName="location" type ="text" #city (input)="onSearchLocation(city.value)" required>
     <button type="submit">Add City</button>
 </form>
 <div>

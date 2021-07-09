@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { retry } from 'rxjs/Operators';
 import { Profile } from '../profile';
 import { ProfileService } from '../profile.service';
 import { WeatherItem } from '../weather-item';
@@ -24,7 +25,7 @@ profiles:Profile[];
     this._weatherService.clearWeatherItems();
     for(let i=0; i<profile.cities.length; i++){
       this._weatherService.searchWeatherData(profile.cities[i])
-      .retry()
+      .pipe(retry())
       .subscribe(
         data=>{
           const weatherItem = new WeatherItem(data.name, data.weather[0].description, data.main.temp);

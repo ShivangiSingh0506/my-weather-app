@@ -1,8 +1,15 @@
+// import { Component, OnInit } from '@angular/core';
+// import { FormControl, FormControlName,FormGroup} from '@angular/forms';
+// import { Subject } from 'rxjs/internal/Subject';
+// import { WeatherItem } from '../weather-item';
+// import { WeatherService } from '../weather.service';
+
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormControlName,FormGroup} from '@angular/forms';
 import { Subject } from 'rxjs/internal/Subject';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/Operators';
 import { WeatherItem } from '../weather-item';
 import { WeatherService } from '../weather.service';
+
 
 @Component({
   selector: 'app-weather-search',
@@ -23,25 +30,42 @@ data:any ={};
   //             const weatherItem=new WeatherItem(data.name,data.weather[0].description,data.main.temp);
   //             this._weatherService.addWeatherItem(weatherItem);
   //              }
-  //           );  
+  //           );
   // }
-  onSumbit(){
+  onSubmit(){
               const weatherItem=new WeatherItem(this.data.name,this.data.weather[0].description,this.data.main.temp);
-              
+
               this._weatherService.addWeatherItem(weatherItem);
   }
   onSearchLocation(cityName:string){
     this.searchStream.next(cityName);
   }
   ngOnInit(){
-    this
-    .searchStream
-    .debounceTime(300)
-    .distinctUntilChanged()
-    .switchMap((input:string)=>this._weatherService.searchWeatherData(input))
-    .subscribe(
-      data=>this.data = data
-    );
-  }
+    this.searchStream
+    .pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((input: string) =>
+        this._weatherService.searchWeatherData(input)
+      )
+    )
+    .subscribe((data) => (this.data = data));
+}
 }
 
+
+
+
+
+
+
+//     this
+//     .searchStream
+//     .debounceTime(300)
+//     .distinctUntilChanged()
+//     .switchMap((input:string)=>this._weatherService.searchWeatherData(input))
+//     .subscribe(
+//       data=>this.data = data
+//     );
+//   }
+// }

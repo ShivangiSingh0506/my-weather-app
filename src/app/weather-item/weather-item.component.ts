@@ -8,8 +8,8 @@ import { WeatherItem } from '../weather-item';
 })
 export class WeatherItemComponent implements OnInit {
   //@Input() item="weatherItem"
-  
-  @Input('item') weatherItem:WeatherItem;
+
+  @Input('item') weatherItem: WeatherItem;
   constructor() {
     //this.weatherItem = new WeatherItem('london','Rainy', 32)
   }
