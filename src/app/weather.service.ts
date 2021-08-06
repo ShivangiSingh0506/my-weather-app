@@ -25,7 +25,8 @@ export class WeatherService {
 
 
   searchWeatherData(cityName:string): Observable<any>{
-    return this._http.get('http://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid=fde9c7af959670357dc9d2161d99d3fc') .pipe(map(response=> response))
+    return this._http.get('http://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid=6b12c3d18c3db677aef3f119f96b1407')
+    .pipe(map(response=> response))
   }
 }
 

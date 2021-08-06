@@ -9,7 +9,7 @@
     <span class="info">City Found:</span> {{data.name}}
 </div> -->
 
-
+<!--
 <form (ngSubmit)="onSubmit()">
     <label for="city">City</label>
     <input formControlName="location" type ="text" #city (input)="onSearchLocation(city.value)" required>
@@ -17,4 +17,15 @@
 </form>
 <div>
     <span class="info">City Found:</span> {{data.name}}
+</div> -->
+
+
+
+<form (ngSubmit)="onSubmit()">
+  <label for="city">City</label>
+  <input type ="text" #city (input)="onSearchLocation(city.value)" required/>
+  <button type="submit">Add City</button>
+</form>
+<div>
+  <span class="info">City Found:</span> {{data.name}}
 </div>
